@@ -12,17 +12,32 @@ var User = rodm.connect(function() {
 });
 ```
 
-
+## Model definition
 
 Let's define a basic User model:
 
 ```javascript
 var User = rodm.model('User', function() {
-    this.string('name')
+    this.string('name');
     this.string('email');
     this.string('password'); 
 });
 ```
+
+## Data types
+
+The currently available data types are:
+* string
+* boolean
+* date
+
+## Accessing a Model
+
+```javascript
+var User = rodm.model('User');
+```
+
+## Methods
 
 Now that the User model is created, we can create a new user and than save it to the database:
 
@@ -64,6 +79,66 @@ User.delete("aNIdToDelete", function(err) {
 ```
 
 
+## Validation
+
+You can specify validation rules for each field this way:
+
+```javascript
+var User = rodm.model('User', function() {
+    this.string('name').required();
+    this.string('email').required()
+                        .email();
+    this.string('password').required()
+                           .minLength(6)
+                           .maxLength(16); 
+    this.date('birthday').required()
+                           .after(new Date(2012, 01, 01))
+                           .before(new Date(2015, 01, 01));
+});
+```
+
+You can also pass a default value as a second argument of the property type:
+
+```javascript
+this.date('birthday', new Date());
+this.string('name', 'John');
+```
+
+## Defining methods and statics
+
+```javascript
+var User = rodm.model('User', function() {
+    this.string('name_s');
+    this.string('email');
+    this.string('password'); 
+    
+    this.methods.comparePassword = function(password) {
+        return (this.password === password);
+    };
+    this.statics.findByName = function(name, callback) {
+        this.search({
+            q: "name_s:"+name
+        }, cb);
+    };
+});
+
+// Example usage
+
+// Static function
+User.findByName("John", function(err, users) {
+    // Do something here with your users
+});
+
+// Instance level methods
+var user = new User();
+user.email = "test";
+user.password = "secret";
+user.comparePassword("falsepassword"); // should be false
+user.comparePassword("secret"); // should be true
+
+```
+
+
 ## Search
 
 Riak has a built-in Solr search engine. 
@@ -90,6 +165,6 @@ User.search({
 });
 ```
 
-
+> ***Note :*** For now you are only able to use the default search schema provided by Riak's Team for Solr (thus the suffix "_s")
 
 
