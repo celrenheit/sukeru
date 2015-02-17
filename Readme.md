@@ -7,7 +7,7 @@ Rodm is an Object Document Mapper for Riak.
 First we need to connect to the database (localhost by default):
 
 ```javascript
-var User = rodm.connect(function() {
+rodm.connect(function() {
     // Inside this we can define our models and do our queries...    
 });
 ```
