@@ -1,4 +1,4 @@
-var Rodm = require("./lib");
+var Sukeru = require("./lib");
 
 var Singleton = (function() {
   var instance = null;
@@ -6,7 +6,7 @@ var Singleton = (function() {
   function Singleton() {}
 
   Singleton.get = function() {
-    return instance !== null ? instance : instance = new Rodm();
+    return instance !== null ? instance : instance = new Sukeru();
   };
 
   return Singleton;

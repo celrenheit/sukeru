@@ -1,12 +1,12 @@
 var should = require('should');
-var rodm = require('../');
+var sukeru = require('../');
 
 describe('Model', function () {
 	var User, userId;
 
 	before(function(done) {
-		rodm.connect('http', function() {
-			User = rodm.model("User", function() {
+		sukeru.connect('http', function() {
+			User = sukeru.model("User", function() {
 				this.string('email_s');
 				this.string('password');
 			});

@@ -1,5 +1,5 @@
 {
-  "name": "rodm",
+  "name": "sukeru",
   "version": "0.1.0",
   "description": "An Object Document Mapper for Riak",
   "main": "index.js",

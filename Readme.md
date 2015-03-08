@@ -1,13 +1,13 @@
 # Overview
 
-Rodm is an Object Document Mapper for Riak.
+Sukeru is an Object Document Mapper for Riak.
 
 # Usage
 
 First we need to connect to the database (localhost by default):
 
 ```javascript
-rodm.connect(function() {
+sukeru.connect(function() {
     // Inside this we can define our models and do our queries...    
 });
 ```
@@ -17,7 +17,7 @@ rodm.connect(function() {
 Let's define a basic User model:
 
 ```javascript
-var User = rodm.model('User', function() {
+var User = sukeru.model('User', function() {
     this.string('name');
     this.string('email');
     this.string('password'); 
@@ -34,7 +34,7 @@ The currently available data types are:
 ## Accessing a Model
 
 ```javascript
-var User = rodm.model('User');
+var User = sukeru.model('User');
 ```
 
 ## Methods
@@ -84,7 +84,7 @@ User.delete("aNIdToDelete", function(err) {
 You can specify validation rules for each field this way:
 
 ```javascript
-var User = rodm.model('User', function() {
+var User = sukeru.model('User', function() {
     this.string('name').required();
     this.string('email').required()
                         .email();
@@ -107,7 +107,7 @@ this.string('name', 'John');
 ## Defining methods and statics
 
 ```javascript
-var User = rodm.model('User', function() {
+var User = sukeru.model('User', function() {
     this.string('name_s');
     this.string('email');
     this.string('password'); 
@@ -148,7 +148,7 @@ For strings to be indexed we need to add the suffixe: "_s"
 
 Let's say we want to be able to search for the name of a user. We can modify the model definition like this:
 ```javascript
-var User = rodm.model('User', function() {
+var User = sukeru.model('User', function() {
     this.string('name_s')
     this.string('email');
     this.string('password'); 

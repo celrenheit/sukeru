@@ -1,12 +1,12 @@
 var should = require('should');
-var rodm = require('../');
+var sukeru = require('../');
 
 describe("Buckets", function() {
 	var Person;
 
 	before(function(done) {
-		rodm.connect('http', function() {
-			Person = rodm.model("Person", function() {
+		sukeru.connect('http', function() {
+			Person = sukeru.model("Person", function() {
 				this.bucket('person', {
 					allow_mult: false
 				})

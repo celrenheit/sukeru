@@ -1,11 +1,11 @@
 var should = require('should');
-var rodm = require('../');
+var sukeru = require('../');
 var shortId = require('shortid');
 
 describe("Validation", function() {
 
 	before(function(done) {
-		rodm.connect('http', function() {
+		sukeru.connect('http', function() {
 			done();
 		});
 		
@@ -13,7 +13,7 @@ describe("Validation", function() {
 	describe("Strings", function() {
 		it("should detect that a field is required", function(done) {
 			var uniqueModelName = "User_"+shortId.generate();
-			var User = rodm.model(uniqueModelName, function() {
+			var User = sukeru.model(uniqueModelName, function() {
 				this.string('email').required();
 				this.string('password');
 			});
@@ -33,7 +33,7 @@ describe("Validation", function() {
 		it("should find out that a field is outside its limit", function(done) {
 
 			var uniqueModelName = "User_"+shortId.generate();
-			var User = rodm.model(uniqueModelName, function() {
+			var User = sukeru.model(uniqueModelName, function() {
 				this.string('email');
 				this.string('password').isLength(4, 10); // Or .minLength(4).maxLength(10);
 			});
@@ -63,7 +63,7 @@ describe("Validation", function() {
 		it("should add default value if not set", function(done) {
 
 			var uniqueModelName = "User_"+shortId.generate();
-			var User = rodm.model(uniqueModelName, function() {
+			var User = sukeru.model(uniqueModelName, function() {
 				this.string('email', 'test@test.com');
 				this.string('password');
 			});
@@ -82,7 +82,7 @@ describe("Validation", function() {
 		it("should validate a custom method", function(done) {
 
 			var uniqueModelName = "User_"+shortId.generate();
-			var User = rodm.model(uniqueModelName, function() {
+			var User = sukeru.model(uniqueModelName, function() {
 				this.string('name').custom(function(val) {
 					return (val === "test")
 				});
@@ -107,7 +107,7 @@ describe("Validation", function() {
 		it("should know it is date", function(done) {
 
 			var uniqueModelName = "User_"+shortId.generate();
-			var User = rodm.model(uniqueModelName, function() {
+			var User = sukeru.model(uniqueModelName, function() {
 				this.date('birthday', new Date());
 			});
 
@@ -125,7 +125,7 @@ describe("Validation", function() {
 		it("should know it is after a specific date", function(done) {
 
 			var uniqueModelName = "User_"+shortId.generate();
-			var User = rodm.model(uniqueModelName, function() {
+			var User = sukeru.model(uniqueModelName, function() {
 				this.date('birthday').after(new Date(2003, 01, 01));
 			});
 
@@ -144,7 +144,7 @@ describe("Validation", function() {
 		it("should know it is before a specific date", function(done) {
 
 			var uniqueModelName = "User_"+shortId.generate();
-			var User = rodm.model(uniqueModelName, function() {
+			var User = sukeru.model(uniqueModelName, function() {
 				this.date('birthday').before(new Date(2003, 01, 01));
 			});
 
@@ -163,7 +163,7 @@ describe("Validation", function() {
 		it.skip("should validate a date if the field is not required", function(done) {
 
 			var uniqueModelName = "User_"+shortId.generate();
-			var User = rodm.model(uniqueModelName, function() {
+			var User = sukeru.model(uniqueModelName, function() {
 				this.date('birthday');
 			});
 

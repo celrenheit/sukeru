@@ -1,17 +1,17 @@
 var should = require('should');
-var rodm = require('../');
+var sukeru = require('../');
 var shortId = require('shortid');
 
 describe('Methods', function() {
 	before(function(done) {
-		rodm.connect('http', function() {
+		sukeru.connect('http', function() {
 			done();
 		});
 	});
 
 	it("should define a static method", function(done) {
 		var uniqueModelName = "User_"+shortId.generate();
-		var User = rodm.model(uniqueModelName, function() {
+		var User = sukeru.model(uniqueModelName, function() {
 			this.string('email');
 			this.string('password').required();
 			this.methods.comparePassword = function(password) {

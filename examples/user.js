@@ -1,7 +1,7 @@
-var rodm = require('../');
+var sukeru = require('../');
 
-rodm.connect(function() {
-	var User = rodm.model('User', function() {
+sukeru.connect(function() {
+	var User = sukeru.model('User', function() {
 		this.string('name_s');
 		this.string('email').required();
 		this.string('password').required();
