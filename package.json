@@ -8,6 +8,10 @@
   },
   "author": "Celrenheit",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/celrenheit/sukeru.git"
+  },
   "dependencies": {
     "inherits": "~2.0.1",
     "lodash": "^2.4.1",
