@@ -2,6 +2,12 @@
 
 Sukeru is an Object Document Mapper for Riak.
 
+# Installation
+
+```shell
+$ npm install sukeru
+```
+
 # Usage
 
 First we need to connect to the database (localhost by default):
