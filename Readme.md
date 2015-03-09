@@ -147,10 +147,23 @@ user.comparePassword("secret"); // should be true
 
 ## Search
 
+### Configuring Riak
+
+Create search index
+```shell
+$ curl -XPUT $RIAK_HOST/search/index/user -H 'Content-Type: application/json'  -d '{"schema":"_yz_default"}'
+```
+
+### Using search
+
 Riak has a built-in Solr search engine. 
 
 Solr needs a schema to define each fields name and types. By default, Riak provides us a default schema.
-For strings to be indexed we need to add the suffixe: "_s" 
+For strings to be indexed (using default schema) we need to add the suffixe: "_s".
+
+
+> ***Note :*** For now you are only able to use the default search schema for Solr provided by Riak's Team  (thus the suffix "_s")
+> You case use a custom schema but you will have to create it yourself.
 
 Let's say we want to be able to search for the name of a user. We can modify the model definition like this:
 ```javascript
@@ -171,6 +184,5 @@ User.search({
 });
 ```
 
-> ***Note :*** For now you are only able to use the default search schema provided by Riak's Team for Solr (thus the suffix "_s")
 
 
