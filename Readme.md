@@ -149,9 +149,19 @@ user.comparePassword("secret"); // should be true
 
 ### Configuring Riak
 
-Create search index
+Create a search index (replace **user** by the name you choose for your search index):
 ```shell
 $ curl -XPUT $RIAK_HOST/search/index/user -H 'Content-Type: application/json'  -d '{"schema":"_yz_default"}'
+```
+
+Create a bucket-type (if it is not already):
+```shell
+$ riak-admin bucket-type create searchable '{"props": {"search_index":"user"}}'
+```
+
+Activate this bucket-type:
+```shell
+$ riak-admin bucket-type activate searchable
 ```
 
 ### Using search
