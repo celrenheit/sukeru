@@ -12,18 +12,20 @@ sukeru.connect(function() {
 	john.email = "john@example.com";
 	john.password = "my secret password";
 	john.save(function(err) {
-	    if(err)
-	        return console.log(err);
-	    console.log("The user has been successfully created", john);
-	    console.log("It should have a new generated id:", john.id);
+		if(err)
+			return console.log(err);
+		console.log("The user has been successfully created", john);
+		console.log("It should have a new generated id:", john.id);
 
 
-		
+
 		User.search({
-		    q: "name_s:John",
-		    rows: 10
+			q: "name_s:John",
+			rows: 10
 		}, function(err, users) {
-		    console.log("Here we have our results", users)
+			if(err)
+				return console.log('Error:', err);
+			console.log("Here we have our results", users);
 		});
 	});
 });
